@@ -49,6 +49,19 @@ export {
   type UITools,
 } from './ui-messages';
 export {
+  dataUIPartSchema,
+  dynamicToolUIPartSchema,
+  fileUIPartSchema,
+  reasoningUIPartSchema,
+  sourceDocumentUIPartSchema,
+  sourceUrlUIPartSchema,
+  stepStartUIPartSchema,
+  textUIPartSchema,
+  toolUIPartSchema,
+  uiMessagePartSchema,
+  uiMessageSchema,
+} from './ui-message-schemas';
+export {
   type CompletionRequestOptions,
   type UseCompletionOptions,
 } from './use-completion';

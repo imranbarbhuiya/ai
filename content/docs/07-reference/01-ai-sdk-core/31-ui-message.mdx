@@ -75,6 +75,57 @@ interface UIMessage<
 }
 ```
 
+## Runtime Validation with Zod Schemas
+
+For runtime validation of UI messages, the AI SDK provides Zod schemas that you can use to validate data from external sources like databases, APIs, or user input.
+
+You can access the Zod schema for `UIMessage` with the `uiMessageSchema` export.
+
+### Example: Validating Persisted Messages
+
+```typescript
+import { uiMessageSchema } from 'ai';
+
+const validatedMessage = uiMessageSchema.parse(messageFromDatabase);
+
+console.log(validatedMessage.id, validatedMessage.role);
+```
+
+### Available UI Message Schemas
+
+The following Zod schemas are exported for runtime validation:
+
+- `uiMessageSchema` - Validates complete UI messages
+- `uiMessagePartSchema` - Validates UI message parts
+- `textUIPartSchema` - Validates text parts
+- `reasoningUIPartSchema` - Validates reasoning parts
+- `toolUIPartSchema` - Validates tool parts (tool-\*)
+- `dynamicToolUIPartSchema` - Validates dynamic tool parts
+- `fileUIPartSchema` - Validates file parts
+- `sourceUrlUIPartSchema` - Validates source URL parts
+- `sourceDocumentUIPartSchema` - Validates source document parts
+- `dataUIPartSchema` - Validates data parts (data-\*)
+- `stepStartUIPartSchema` - Validates step start parts
+
+### UIMessage with Custom Metadata
+
+For custom metadata, you can extend the `uiMessageSchema` to include your own metadata structure.
+
+```typescript
+import { z } from 'zod';
+import { uiMessageSchema } from 'ai';
+
+const myMetadataSchema = z.object({
+  createdAt: z.number(),
+  model: z.string(),
+  tokens: z.number().optional(),
+});
+
+const myUIMessageSchema = uiMessageSchema.extend({
+  metadata: myMetadataSchema.optional(),
+});
+```
+
 ## `UIMessagePart` Types
 
 ### `TextUIPart`
