@@ -1,5 +1,11 @@
 # @ai-sdk/openai
 
+## 2.0.7
+
+### Patch Changes
+
+- 4738f18: feat(openai): add flex processing support for gpt-5 models
+
 ## 2.0.6
 
 ### Patch Changes
